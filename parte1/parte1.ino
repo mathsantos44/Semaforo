@@ -13,42 +13,54 @@
  * Não poderá ser utilizado o comando Delay durante a troca de sinalizações pra não ocorrer erros e o usuário não ser reconhecido
  */
 
-#define sem1verm 2
-#define sem1amar 3
-#define sem1verd 4
+#define sem1verm 2 //Led vermelho do semáforo 1
+#define sem1amar 3 //Led amarelo do semáforo 1
+#define sem1verd 4 //Led verde do semáforo 1
 
-unsigned long delay1 = 0;
-unsigned long delay2 = 0;
-unsigned long delay3 = 0;
+unsigned long tempo1, tempo2, tempo3, tempoinicial1, tempoinicial2, tempoinicial3, tempoatual;
 
-const int tempoVerde = 5000;
-const int tempoAmar = 2000;
-
-int fase;
+int fase; //Variável que indica o que está acontecendo com os Leds para o microcontrolador
 
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  for (int i = 2; i <= 4; i++) {
+  for (int i = 2; i <= 4; i++) { //Comando de repetição pra colocar os pinos dos Leds como Saída
     pinMode(i, OUTPUT);
     Serial.println(i);
-
-    delay1 = millis();
-
-    fase = 1;
   }
+  tempoinicial = millis(); //Fazer o set do tempo inicial
+
+  fase = 1;
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  if (fase == 1) {
-    delay1 = millis();
+  tempoatual = millis(); //Variável designada para trocar o comando millis por outra coisa
+  tempo1 = tempoatual-tempoinicial1;
+  tempo2 = tempoatual-tempoinicial2;
+  tempo3 = tempoatual- 
+
+  if ((tempo > 5000) && (fase == 1)) {
     digitalWrite(sem1verm, LOW);
-    digitalWrite(sem1amar, LOW);
     digitalWrite(sem1verd, HIGH);
-    
-    if ((millis() - dalay1) > tempoVerde) {
-      fase = 2;
-    }
+    digitalWrite(sem1amar, LOW);
+
+    fase = 2;
+  }
+
+  if ((tempo > 8000) && (fase == 2)) {
+    digitalWrite(sem1verm, LOW);
+    digitalWrite(sem1verd, LOW);
+    digitalWrite(sem1amar, HIGH);
+
+    fase = 3;
+  }
+
+  if ((tempo > 13000) && (fase == 3)) {
+    digitalWrite(sem1verm, HIGH);
+    digitalWrite(sem1verd, LOW);
+    digitalWrite(sem1amar, LOW);
+
+    tempoinicial = millis();
+    fase = 1;
   }
 }
