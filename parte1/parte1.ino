@@ -28,39 +28,42 @@ void setup() {
     pinMode(i, OUTPUT);
     Serial.println(i);
   }
-  tempoinicial = millis(); //Fazer o set do tempo inicial
+  tempoinicial1 = millis(); //Fazer o set do tempo inicial
 
   fase = 1;
 }
 
 void loop() {
   tempoatual = millis(); //Variável designada para trocar o comando millis por outra coisa
+  
   tempo1 = tempoatual-tempoinicial1;
-  tempo2 = tempoatual-tempoinicial2;
-  tempo3 = tempoatual- 
 
-  if ((tempo > 5000) && (fase == 1)) {
+  if ((tempo1 > 5000) && (fase == 1)) {
     digitalWrite(sem1verm, LOW);
     digitalWrite(sem1verd, HIGH);
     digitalWrite(sem1amar, LOW);
 
+    tempoinicial2 = millis();
+    tempo2 = tempoatual-tempoinicial2;
     fase = 2;
   }
 
-  if ((tempo > 8000) && (fase == 2)) {
+  if ((tempo2 > 3000) && (fase == 2)) {
     digitalWrite(sem1verm, LOW);
     digitalWrite(sem1verd, LOW);
     digitalWrite(sem1amar, HIGH);
-
+    
+    tempoinicial3 = millis();
+    tempo3 = tempoatual-tempoinicial3;
     fase = 3;
   }
 
-  if ((tempo > 13000) && (fase == 3)) {
+  if ((tempo3 > 5000) && (fase == 3)) {
     digitalWrite(sem1verm, HIGH);
     digitalWrite(sem1verd, LOW);
     digitalWrite(sem1amar, LOW);
 
-    tempoinicial = millis();
+    tempoinicial1 = millis();
     fase = 1;
   }
 }
