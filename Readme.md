@@ -12,4 +12,4 @@ O projeto não poderá ter o uso do comando Delay, pois ele pausará o programa 
 
 Enquanto 1 semáforo estiver aberto, todos os outros devem estar fechados, pra que não ocorra colisão durante o cruzamento.
 
-A parte 2 do projeto adicionei o funcionamento de 1 botão, na parte 1.
+A 2º parte da aplicação é uma melhoria da 1º. Nessa parte foi adicionado o funcionamento de um push-button, sendo que o sinal só abre para pedestres caso esse push-button for pressionado.
