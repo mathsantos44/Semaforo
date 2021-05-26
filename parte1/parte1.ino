@@ -17,7 +17,7 @@
 #define sem1amar 3 //Led amarelo do semáforo 1
 #define sem1verd 4 //Led verde do semáforo 1
 
-unsigned long tempo1, tempo2, tempo3, tempoinicial1, tempoinicial2, tempoinicial3, tempoatual;
+unsigned long tempo, tempoinicial, tempoatual;
 
 int fase; //Variável que indica o que está acontecendo com os Leds para o microcontrolador
 
@@ -28,42 +28,42 @@ void setup() {
     pinMode(i, OUTPUT);
     Serial.println(i);
   }
-  tempoinicial1 = millis(); //Fazer o set do tempo inicial
+  tempoinicial = millis(); //Fazer o set do tempo inicial
 
   fase = 1;
+
+  digitalWrite(sem1verm, HIGH);
+  digitalWrite(sem1verd, HIGH);
+  digitalWrite(sem1amar, HIGH);
 }
 
 void loop() {
   tempoatual = millis(); //Variável designada para trocar o comando millis por outra coisa
   
-  tempo1 = tempoatual-tempoinicial1;
+  tempo = tempoatual-tempoinicial;
 
-  if ((tempo1 > 5000) && (fase == 1)) {
+  if ((tempo > 5000) && (fase == 1)) {
     digitalWrite(sem1verm, LOW);
     digitalWrite(sem1verd, HIGH);
     digitalWrite(sem1amar, LOW);
 
-    tempoinicial2 = millis();
-    tempo2 = tempoatual-tempoinicial2;
     fase = 2;
   }
 
-  if ((tempo2 > 3000) && (fase == 2)) {
+  if ((tempo > 10000) && (fase == 2)) {
     digitalWrite(sem1verm, LOW);
     digitalWrite(sem1verd, LOW);
     digitalWrite(sem1amar, HIGH);
-    
-    tempoinicial3 = millis();
-    tempo3 = tempoatual-tempoinicial3;
+
     fase = 3;
   }
 
-  if ((tempo3 > 5000) && (fase == 3)) {
+  if ((tempo > 12000) && (fase == 3)) {
     digitalWrite(sem1verm, HIGH);
     digitalWrite(sem1verd, LOW);
     digitalWrite(sem1amar, LOW);
 
-    tempoinicial1 = millis();
+    tempoinicial = millis();
     fase = 1;
   }
 }
