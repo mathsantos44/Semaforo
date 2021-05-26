@@ -11,3 +11,5 @@ Após o funcionamento dos 4 semáforos em conjunto, terá a parte que fechará t
 O projeto não poderá ter o uso do comando Delay, pois ele pausará o programa por determinado tempo, e o pressionamento do botão pelo usuário poderá não ser identificado pelo microcontrolador.
 
 Enquanto 1 semáforo estiver aberto, todos os outros devem estar fechados, pra que não ocorra colisão durante o cruzamento.
+
+A parte 2 do projeto adicionei o funcionamento de 1 botão, na parte 1.
