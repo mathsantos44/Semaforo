@@ -41,52 +41,54 @@ void loop() {
   tempoatual = millis();
   tempo = tempoatual - tempoinicial;
 
-  if ((tempo > 5000)&&(fase == 1)) {
+  if ((tempo > 500)&&(fase == 1)) {
     ligarleds(0,0,1,1,0,0,1,0,0,1,0,0,1,0,1,0,1,0,1,0);
 
     fase = 2;
   }
   
-  if ((tempo > 10000) && (fase == 2)) {
+  if ((tempo > 5000) && (fase == 2)) {
     ligarleds(0,1,0,1,0,0,1,0,0,1,0,0,1,0,1,0,1,0,1,0);
 
     fase = 3;
   }
   
-  if ((tempo > 10500) && (fase == 3)) {
+  if ((tempo > 5500) && (fase == 3)) {
     ligarleds(1,0,0,0,0,1,1,0,0,1,0,0,1,0,1,0,1,0,1,0);
 
     fase = 4;
   }
 
-  if ((tempo > 15500) && (fase == 4)) {
+  if ((tempo > 10500) && (fase == 4)) {
     ligarleds(1,0,0,0,1,0,1,0,0,1,0,0,1,0,1,0,1,0,1,0);
 
     fase = 5;
   }
 
-  if ((tempo > 16000) && (fase == 5)) {
+  if ((tempo > 11000) && (fase == 5)) {
     ligarleds(1,0,0,1,0,0,0,0,1,1,0,0,1,0,1,0,1,0,1,0);
 
     fase = 6;
   }
 
-  if ((tempo > 21000) && (fase == 6)) {
+  if ((tempo > 16000) && (fase == 6)) {
     ligarleds(1,0,0,1,0,0,0,1,0,1,0,0,1,0,1,0,1,0,1,0);
 
     fase = 7;
   }
 
-  if ((tempo > 21500) && (fase == 7)) {
+  if ((tempo > 16500) && (fase == 7)) {
     ligarleds(1,0,0,1,0,0,1,0,0,0,0,1,1,0,1,0,1,0,1,0);
 
     fase = 8;
   }
 
-  if ((tempo > 26500) && (fase == 8)) {
+  if ((tempo > 21500) && (fase == 8)) {
     ligarleds(1,0,0,1,0,0,1,0,0,0,1,0,1,0,1,0,1,0,1,0);
 
-    fase = 9;
+    tempoinicial = tempoatual;
+    Serial.println("Fim do Programa");
+    fase = 1;
   }
 }
 
