@@ -4,11 +4,18 @@
  * Parte 2
  */
 
-const int led1verm = 2, led1amar = 3, led1verd = 4, ledped1verm = 5, ledped1verd = 6, botao = 7;
+const int led1verm = 2;
+const int led1amar = 3;
+const int led1verd = 4;
+const int ledped1verm = 5;
+const int ledped1verd = 6;
+const int botao = 7;
 
 unsigned long tempo, tempoatual, tempoinicial;
 
 int estadobotao, anteriorbotao, bot = 0, fase = 1;
+
+void leds(int vm1, int am1, int vd1, int pvm1, int pvd1);
 
 void setup() {
   Serial.begin(9600);
@@ -17,7 +24,7 @@ void setup() {
     Serial.println(i);
     digitalWrite(i, HIGH);
   }
-  pinMode(botao, INPUT);
+  pinMode(botao, INPUT_PULLUP);
 
   anteriorbotao = digitalRead(botao);
 
@@ -26,30 +33,32 @@ void setup() {
 }
 
 void loop() {
+  estadobotao = digitalRead(botao);
   tempoatual = millis();
   tempo = tempoatual - tempoinicial;
   if ((tempo > 5000) && (fase == 1)) {
-    void leds(0, 0, 1, 1, 0);
+    leds(0, 0, 1, 1, 0);
     fase = 2;
   }
 
   if ((tempo > 10000) && (fase == 2)) {
-    void leds(0, 1, 0, 1, 0, 1);
+    leds(0, 1, 0, 1, 0);
     fase = 3;
   }
   
   if ((tempo > 13000) && (fase == 3)) {
-    void leds(1, 0, 0, 1, 0);
+    leds(1, 0, 0, 1, 0);
 
     fase = 4;
   }
   if (fase == 4) {
     if (bot == 1) {
-      void leds(1, 0, 0, 0, 1);
+      leds(1, 0, 0, 0, 1);
 
       delay(3000);
 
       tempoinicial = tempoatual;
+      bot = 0;
       fase = 1;
     }
     else {
@@ -57,9 +66,13 @@ void loop() {
       fase = 1;
     }
   }
+  if ((estadobotao == HIGH) && (anteriorbotao == LOW)) {
+    bot = 1;
+  }
+  anteriorbotao = estadobotao;
 }
 
-void leds(boolean vm1, boolean am1, boolean vd1, boolean pvm1, boolean pvd1) {
+void leds(int vm1, int am1, int vd1, int pvm1, int pvd1) {
     digitalWrite(led1verm, vm1);
     digitalWrite(led1amar, am1);
     digitalWrite(led1verd, vd1);
