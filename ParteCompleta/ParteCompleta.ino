@@ -69,7 +69,11 @@ void loop() {
   estadobotao = digitalRead(botao);
   tempoatual = millis();
   tempo = tempoatual - tempoinicial;
+<<<<<<< HEAD
   if ((tempo < 5000) && (fase == 1)) { //Verde (1), Amarelo (), Vermelho(2, 3, 4)
+=======
+  if ((tempo > 5000) && (fase == 1)) { //Verde (1), Amarelo (), Vermelho(2, 3, 4)
+>>>>>>> parte2
     digitalWrite(led1verm, LOW);
     digitalWrite(led1verd, HIGH);
     digitalWrite(led1amar, LOW);
@@ -90,7 +94,11 @@ void loop() {
     fase = 2;
   }
 
+<<<<<<< HEAD
   if ((tempo < 8000) && (fase == 2)) { //Verde (), Amarelo (1), Vermelho (2, 3, 4)
+=======
+  if ((tempo > 8000) && (fase == 2)) { //Verde (), Amarelo (1), Vermelho (2, 3, 4)
+>>>>>>> parte2
     digitalWrite(led1verm, LOW);
     digitalWrite(led1verd, LOW);
     digitalWrite(led1amar, HIGH);
@@ -111,7 +119,11 @@ void loop() {
     fase = 3;
   }
 
+<<<<<<< HEAD
   if ((tempo < 13000) && (fase == 3)) { //Verde(2), Amarelo(), Vermelho(1, 3, 4)
+=======
+  if ((tempo > 13000) && (fase == 3)) { //Verde(2), Amarelo(), Vermelho(1, 3, 4)
+>>>>>>> parte2
     digitalWrite(led1verm, HIGH);
     digitalWrite(led1verd, LOW);
     digitalWrite(led1amar, LOW);
